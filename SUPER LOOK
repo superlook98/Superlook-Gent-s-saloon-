@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Look Gent's Saloon LLC</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        nav {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s;
+            border-radius: 5px;
+        }
+
+        nav a:hover {
+            background: #c9a961;
+            transform: translateY(-2px);
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%232d2d2d" width="1200" height="600"/><path fill="%233d3d3d" d="M0 300L50 280L100 290L150 270L200 285L250 275L300 290L350 280L400 295L450 285L500 300L550 290L600 305L650 295L700 310L750 300L800 315L850 305L900 320L950 310L1000 325L1050 315L1100 330L1150 320L1200 335V600H0Z"/></svg>') center/cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 60px;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            animation: fadeInDown 1s;
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: #c9a961;
+            animation: fadeInUp 1s;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: #c9a961;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s;
+            animation: fadeInUp 1.5s;
+        }
+
+        .cta-button:hover {
+            background: #b89851;
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(201,169,97,0.4);
+        }
+
+        section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2d2d2d;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: #c9a961;
+            margin: 1rem auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            color: #2d2d2d;
+            margin-bottom: 1rem;
+        }
+
+        #about {
+            background: #f8f8f8;
+        }
+
+        .about-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+
+        .gallery-item {
+            height: 250px;
+            background: linear-gradient(135deg, #c9a961 0%, #b89851 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        #contact {
+            background: #2d2d2d;
+            color: white;
+        }
+
+        #contact h2 {
+            color: white;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-card {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .contact-card h3 {
+            color: #c9a961;
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Super Look Gent's Saloon LLC</h1>
+            <p class="subtitle">Where Style Meets Excellence</p>
+            <a href="#contact" class="cta-button">Book Your Appointment</a>
+        </div>
+    </section>
+
+    <section id="services">
+        <h2>Our Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">✂️</div>
+                <h3>Premium Haircut</h3>
+                <p>Expert stylists delivering the perfect cut tailored to your style and personality.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🪒</div>
+                <h3>Beard Styling & Shave</h3>
+                <p>Traditional and modern beard grooming with precision and care.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">💆</div>
+                <h3>Facial Treatment</h3>
+                <p>Rejuvenating facial treatments for fresh and healthy skin.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">💇</div>
+                <h3>Hair Coloring</h3>
+                <p>Professional hair coloring services with premium quality products.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">💈</div>
+                <h3>Head Massage</h3>
+                <p>Relaxing head massage to relieve stress and refresh your mind.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">✨</div>
+                <h3>Special Grooming</h3>
+                <p>Complete grooming packages for special occasions and events.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2>About Us</h2>
+        <div class="about-content">
+            <p>Welcome to <strong>Super Look Gent's Saloon LLC</strong>, where we combine traditional barbering techniques with modern styling trends. Our experienced team of professional stylists is dedicated to providing you with the best grooming experience.</p>
+            <p>We take pride in offering premium services in a comfortable and welcoming environment. Whether you need a quick trim or a complete makeover, we're here to make you look and feel your best.</p>
+            <p>Visit us today and experience the difference that quality service and attention to detail can make!</p>
+        </div>
+    </section>
+
+    <section id="gallery">
+        <h2>Gallery</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item">Classic Cuts</div>
+            <div class="gallery-item">Modern Styles</div>
+            <div class="gallery-item">Beard Grooming</div>
+            <div class="gallery-item">Premium Service</div>
+            <div class="gallery-item">Expert Stylists</div>
+            <div class="gallery-item">Luxury Experience</div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <div class="contact-info">
+            <div class="contact-card">
+                <h3>📍 Location</h3>
+                <p>White Market, First Floor</p>
+                <p>Shop No. 4, Al Rahba City</p>
+                <p>Abu Dhabi, UAE</p>
+            </div>
+            <div class="contact-card">
+                <h3>📞 Contact</h3>
+                <p>Landline: 02 564 4082</p>
+                <p>Mobile: 052 570 0535</p>
+                <p>Email: superlook98@gmail.com</p>
+            </div>
+            <div class="contact-card">
+                <h3>🕐 Hours</h3>
+                <p>Open Daily</p>
+                <p>9:00 AM - 11:59 PM</p>
+                <p><em>Walk-ins Welcome!</em></p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Super Look Gent's Saloon LLC. All Rights Reserved.</p>
+        <p>Quality Grooming | Professional Service | Your Style Partner</p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.background = 'linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%)';
+            }
+        });
+    </script>
+</body>
+</html>
